@@ -9,12 +9,14 @@
 ![](https://img.shields.io/badge/license-Apache--2.0-000000.svg)
 [![Contributing](https://img.shields.io/badge/Contribution-welcome-brightgreen.svg)](docs/DeveloperGuide_ZH.md)
 
+[![pypi version](https://img.shields.io/pypi/v/py-data-juicer?color=026cad)](https://pypi.org/project/py-data-juicer)
+[![Docker version](https://img.shields.io/docker/v/datajuicer/data-juicer?label=Docker&color=498bdf)](https://hub.docker.com/r/datajuicer/data-juicer)
 [![Document_List](https://img.shields.io/badge/Docs-English-blue?logo=Markdown)](README.md#documentation)
 [![文档列表](https://img.shields.io/badge/文档-中文-blue?logo=Markdown)](README_ZH.md#documentation)
 [![API Reference](https://img.shields.io/badge/Docs-API_Reference-blue?logo=Markdown)](https://alibaba.github.io/data-juicer/)
+
 [![ModelScope-10+ Demos](https://img.shields.io/badge/ModelScope-10+_Demos-4e29ff.svg?logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjI0IDEyMS4zMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIGQ9Im0wIDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtOTkuMTQgNzMuNDloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xNzYuMDkgOTkuMTRoLTI1LjY1djIyLjE5aDQ3Ljg0di00Ny44NGgtMjIuMTl6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTEyNC43OSA0Ny44NGgyNS42NXYyNS42NWgtMjUuNjV6IiBmaWxsPSIjMzZjZmQxIiAvPgoJPHBhdGggZD0ibTAgMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xOTguMjggNDcuODRoMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xOTguMjggMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xNTAuNDQgMHYyMi4xOWgyNS42NXYyNS42NWgyMi4xOXYtNDcuODR6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTczLjQ5IDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiMzNmNmZDEiIC8+Cgk8cGF0aCBkPSJtNDcuODQgMjIuMTloMjUuNjV2LTIyLjE5aC00Ny44NHY0Ny44NGgyMi4xOXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtNDcuODQgNzMuNDloLTIyLjE5djQ3Ljg0aDQ3Ljg0di0yMi4xOWgtMjUuNjV6IiBmaWxsPSIjNjI0YWZmIiAvPgo8L3N2Zz4K)](#demos)
 [![ModelScope-20+_Refined_Datasets](https://img.shields.io/badge/ModelScope-20+_Refined_Datasets-4e29ff.svg?logo=data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjI0IDEyMS4zMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCTxwYXRoIGQ9Im0wIDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtOTkuMTQgNzMuNDloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xNzYuMDkgOTkuMTRoLTI1LjY1djIyLjE5aDQ3Ljg0di00Ny44NGgtMjIuMTl6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTEyNC43OSA0Ny44NGgyNS42NXYyNS42NWgtMjUuNjV6IiBmaWxsPSIjMzZjZmQxIiAvPgoJPHBhdGggZD0ibTAgMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xOTguMjggNDcuODRoMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzYyNGFmZiIgLz4KCTxwYXRoIGQ9Im0xOTguMjggMjIuMTloMjUuNjV2MjUuNjVoLTI1LjY1eiIgZmlsbD0iIzM2Y2ZkMSIgLz4KCTxwYXRoIGQ9Im0xNTAuNDQgMHYyMi4xOWgyNS42NXYyNS42NWgyMi4xOXYtNDcuODR6IiBmaWxsPSIjNjI0YWZmIiAvPgoJPHBhdGggZD0ibTczLjQ5IDQ3Ljg0aDI1LjY1djI1LjY1aC0yNS42NXoiIGZpbGw9IiMzNmNmZDEiIC8+Cgk8cGF0aCBkPSJtNDcuODQgMjIuMTloMjUuNjV2LTIyLjE5aC00Ny44NHY0Ny44NGgyMi4xOXoiIGZpbGw9IiM2MjRhZmYiIC8+Cgk8cGF0aCBkPSJtNDcuODQgNzMuNDloLTIyLjE5djQ3Ljg0aDQ3Ljg0di0yMi4xOWgtMjUuNjV6IiBmaWxsPSIjNjI0YWZmIiAvPgo8L3N2Zz4K)](#data-recipes)
-
 [![QualityClassifier](https://img.shields.io/badge/Tools-Quality_Classifier-saddlebrown?logo=Markdown)](tools/quality_classifier/README_ZH.md)
 [![AutoEvaluation](https://img.shields.io/badge/Tools-Auto_Evaluation-saddlebrown?logo=Markdown)](tools/evaluator/README_ZH.md)
 
@@ -22,6 +24,12 @@ Data-Juicer 是一个一站式数据处理系统，旨在为大语言模型 (LLM
 本项目在积极更新和维护中，我们将定期强化和新增更多的功能和数据菜谱。欢迎您加入我们推进 LLM 数据的开发和研究工作！
 
 ----
+
+## 新消息
+- ![new](https://img.alicdn.com/imgextra/i4/O1CN01kUiDtl1HVxN6G56vN_!!6000000000764-2-tps-43-19.png) [2023-10-13] 我们的第一届以数据为中心的 LLM 竞赛开始了！
+  请访问大赛官网，**FT-Data Ranker**（[1B赛道](https://tianchi.aliyun.com/competition/entrance/532157) 、[7B赛道](https://tianchi.aliyun.com/competition/entrance/532158) ) ，了解更多信息。
+
+- [2023-10-8] 我们的论文更新至第二版，并发布了对应的Data-Juicer v0.1.2版本！
 
 目录
 ===
@@ -51,13 +59,13 @@ Data-Juicer 是一个一站式数据处理系统，旨在为大语言模型 (LLM
 
 ## 特点
 
-![Overview](https://img.alicdn.com/imgextra/i4/O1CN01uvLL0T1VIaX28dMLg_!!6000000002630-2-tps-2509-1192.png)
+![Overview](https://img.alicdn.com/imgextra/i2/O1CN01IMPeD11xYRUYLmXKO_!!6000000006455-2-tps-3620-1604.png)
 
 * **系统化 & 可复用**：为用户提供系统化且可复用的20+[配置菜谱](configs/README_ZH.md)，50+核心[算子](docs/Operators_ZH.md)和专用[工具池](#documentation)，旨在让数据处理独立于特定的大语言模型数据集和处理流水线。
 
 * **数据反馈回路**：支持详细的数据分析，并提供自动报告生成功能，使您深入了解您的数据集。结合多维度自动评估功能，支持在 LLM 开发过程的多个阶段进行及时反馈循环。  ![Data-in-the-loop](https://img.alicdn.com/imgextra/i1/O1CN011E99C01ndLZ55iCUS_!!6000000005112-0-tps-2701-1050.jpg)
 
-* **全面的数据处理菜谱**：为pre-training、post-tuning、中英文等场景提供数十种[预构建的数据处理菜谱](configs/data_juicer_recipes/README_ZH.md)。  ![exp_llama](https://img.alicdn.com/imgextra/i1/O1CN01D0Nuof1uOPxvBVEq9_!!6000000006027-0-tps-2324-754.jpg)
+* **全面的数据处理菜谱**：为pre-training、fine-tuning、中英文等场景提供数十种[预构建的数据处理菜谱](configs/data_juicer_recipes/README_ZH.md)。  ![exp_llama](https://img.alicdn.com/imgextra/i2/O1CN019WtUPP1uhebnDlPR8_!!6000000006069-2-tps-2530-1005.png)
 
 * **效率增强**：提供高效的数据处理流水线，减少内存占用和CPU开销，提高生产力。  ![sys-perf](https://img.alicdn.com/imgextra/i4/O1CN01Sk0q2U1hdRxbnQXFg_!!6000000004300-0-tps-2438-709.jpg)
 
@@ -112,11 +120,16 @@ pip install py-data-juicer
 
 ### 使用 Docker 安装
 
-- 运行如下命令用我们提供的 [Dockerfile](Dockerfile) 来构建包括最新版本的 `data-juicer` 的 docker 镜像：
+- 您可以选择
+  - 从DockerHub直接拉取我们的预置镜像:
+    ```shell
+    docker pull datajuicer/data-juicer:<version_tag>
+    ```
+  - 或者运行如下命令用我们提供的 [Dockerfile](Dockerfile) 来构建包括最新版本的 `data-juicer` 的 docker 镜像：
 
-```shell
-docker build -t data-juicer:<version_tag> .
-```
+    ```shell
+    docker build -t data-juicer:<version_tag> .
+    ```
 
 ### 安装校验
 
@@ -253,7 +266,7 @@ docker exec -it <container_id> bash
 * [BLOOM 数据处理菜谱](configs/reproduced_bloom/README_ZH.md)
 * [RedPajama 数据处理菜谱](configs/reproduced_redpajama/README_ZH.md)
 * [预训练数据增强菜谱](configs/data_juicer_recipes/README_ZH.md)
-* [Post-tuning数据增强菜谱](configs/data_juicer_recipes/README_ZH.md#完善前后的alpaca-cot数据集)
+* [Fine-tuning数据增强菜谱](configs/data_juicer_recipes/README_ZH.md#完善前后的alpaca-cot数据集)
 
 ## 演示样例
 
@@ -281,6 +294,8 @@ Data-Juicer 在 Apache License 2.0 协议下发布。
 ## 贡献
 
 我们非常欢迎贡献新功能、修复漏洞以及讨论。请参考[开发者指南](docs/DeveloperGuide_ZH.md)。
+
+欢迎加入我们的[Slack channel](https://join.slack.com/t/data-juicer/shared_invite/zt-23zxltg9d-Z4d3EJuhZbCLGwtnLWWUDg?spm=a2c22.12281976.0.0.7a8275bc8g7ypp), 或[DingDing群](https://qr.dingtalk.com/action/joingroup?spm=a2c22.12281976.0.0.7a8275bc8g7ypp&code=v1,k1,C0DI7CwRFrg7gJP5aMC95FUmsNuwuKJboT62BqP5DAk=&_dt_no_comment=1&origin=11) 。 
 
 ## 参考文献
 如果您发现我们的工作对您的研发有帮助，请引用以下[论文](https://arxiv.org/abs/2309.02033) 。
