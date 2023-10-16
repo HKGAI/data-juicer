@@ -1,7 +1,7 @@
 import os
 
 # Default cache location
-DEFAULT_CACHE_HOME = '~/.cache'
+DEFAULT_CACHE_HOME = '/export/project/lijiawei421/projects/innohk/data_juicer/cache_home'
 CACHE_HOME = os.getenv('CACHE_HOME', DEFAULT_CACHE_HOME)
 
 # Default data_juicer cache location

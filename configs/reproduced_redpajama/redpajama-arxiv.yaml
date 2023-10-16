@@ -2,10 +2,11 @@
 
 # global parameters
 project_name: 'arXiv'
-dataset_path: '/path/to/your/dataset/dir/or/file'  # path to your dataset directory or file
-np: 32  # number of subprocess to process your dataset
+dataset_path: '/export/project/LLMData/RedPajama/arxiv'  # path to your dataset directory or file
+np: 4  # number of subprocess to process your dataset
 
-export_path: '/path/to/your/exported/dataset/file'
+
+export_path: '/export/project/lijiawei421/projects/innohk/data_juicer/profiling_dj_on_RedPajama/RedPajama_arxiv_processed_by_dj_v2.jsonl'
 
 # process schedule
 # a list of several process operators with their arguments

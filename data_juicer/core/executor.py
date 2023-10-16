@@ -14,6 +14,10 @@ from data_juicer.utils.constant import Fields
 from .exporter import Exporter
 from .tracer import Tracer
 
+# debugger module
+from pdb import set_trace as stop
+# ---------------
+
 
 class Executor:
     """
@@ -29,6 +33,13 @@ class Executor:
 
         :param cfg: optional config dict.
         """
+        """
+        初始化四大模块
+        1.dataset的formatter
+        2.ckpt的manager
+        3.exporter
+        4.tracer
+        """
         self.cfg = init_configs() if cfg is None else cfg
 
         self.work_dir = self.cfg.work_dir
@@ -36,6 +47,10 @@ class Executor:
         self.ops = None
 
         # only enable it when using cache
+        """
+        Whether to use the cache management of huggingface datasets. It
+        might take up lots of disk space when using cache
+        """
         if self.cfg.use_cache:
             logger.info(f'Using cache compression method: '
                         f'[{self.cfg.cache_compress}]')
@@ -43,6 +58,10 @@ class Executor:
 
         # setup formatter
         logger.info('Setting up data formatter...')
+        """
+        根据输入，从若干个数据集里随机或按权重各抽取一些样本，组合成一个新的数据集dataset，然后得到一个formatter
+        因为每个数据集需要一个formatter，管理方式类似我之前的spark任务，t2t的管理方式(registry)
+        """
         self.formatter = load_formatter(self.cfg.dataset_path,
                                         self.cfg.text_keys, self.cfg.suffixes,
                                         self.cfg.add_suffix)
@@ -52,6 +71,9 @@ class Executor:
         # checkpoints. If the checkpoints are loaded successfully, ops that
         # have been processed will be skipped.
         self.process_list = self.cfg.process
+        """
+        读取ckpt，跳过process_list里面已经完成的process        
+        """
         if self.cfg.use_checkpoint:
             logger.info('Preparing checkpoint manager...')
             self.ckpt_dir = os.path.join(self.work_dir, 'ckpt')
@@ -60,7 +82,7 @@ class Executor:
                                                   self.cfg.np)
             if self.ckpt_manager.ckpt_available:
                 logger.info('Found existed dataset checkpoint.')
-                self.process_list = self.ckpt_manager.get_left_process_list()
+                self.process_list = self.ckpt_manager.get_left_process_list() # 剩余process
         self.cfg.process = self.process_list
 
         # prepare exporter and check export path suffix
@@ -142,6 +164,7 @@ class Executor:
                     dataset = dataset.map(op.compute_stats,
                                           num_proc=self.cfg.np,
                                           desc=op_name + '_compute_stats')
+
                     if self.cfg.use_checkpoint:
                         prev = dataset
                     tmp = dataset.filter(op.process,

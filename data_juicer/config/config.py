@@ -116,7 +116,7 @@ def init_configs(args=None):
     parser.add_argument(
         '--ds_cache_dir',
         type=str,
-        default='~/.cache/huggingface/datasets',
+        default='/export/project/lijiawei421/env/huggingface_cache/datasets',
         help='Cache dir for HuggingFace datasets. In default it\'s the '
              'default cache dir "~/.cache/huggingface/datasets". If this '
              'argument is reset by users, it will override the default cache '
